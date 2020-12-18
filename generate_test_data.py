@@ -10,7 +10,7 @@ def generate_file(file_name, size):
         size: int -> desired byte size of the file.
     """
     with open(file_name, "wb") as f:
-        for i in range(0, size):
+        for i in range(0, size // 8):
             f.write(bytes(randrange(0, 254)))
 
 
@@ -25,8 +25,11 @@ if __name__ == "__main__":
     ]
     kb = pow(2, 10)
     mb = pow(2, 20)
-    sizes = [0, 1, kb * 1, kb * 50, kb * 500, mb * 10]
+    sizes = [0, 8, kb * 1, kb * 50, kb * 500, mb * 10]
 
     for file_name, size in zip(file_names, sizes):
         generate_file(file_name, size)
         create_reversed_bytes_position_file(file_name)
+        # Note:
+        # I manually changed test_<size>.out to expected_<size> to 
+        # not change the method in case you wish to use the script.
