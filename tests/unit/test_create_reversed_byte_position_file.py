@@ -1,6 +1,6 @@
-from binary_reverse import create_reversed_bytes_position_file
 import filecmp
 import pytest
+from binary_reverse import create_reversed_bytes_position_file
 
 
 @pytest.mark.parametrize("test_input, test_output, expected", [
