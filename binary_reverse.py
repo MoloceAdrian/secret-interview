@@ -20,12 +20,15 @@ def create_reversed_bytes_position_file(file_name: str):
     Args:
         file_name: str -> name of the file to read data from.
     """
-    with open(file_name, 'rb') as file_in, open(output_file_name(file_name), 'wb') as file_out:
-        # Go to the end of the file.
-        file_in.seek(0, os.SEEK_END)   
-        for position in reversed(range(0, file_in.tell(), BUFSIZE)):
-            file_in.seek(position, os.SEEK_SET)
-            file_out.write(file_in.read(BUFSIZE)[::-1])
+    try:
+        with open(file_name, 'rb') as file_in, open(output_file_name(file_name), 'wb') as file_out:
+            # Go to the end of the file.
+            file_in.seek(0, os.SEEK_END)   
+            for position in reversed(range(0, file_in.tell(), BUFSIZE)):
+                file_in.seek(position, os.SEEK_SET)
+                file_out.write(file_in.read(BUFSIZE)[::-1])
+    except FileNotFoundError as e:
+        print(e)
 
 
 def main():
