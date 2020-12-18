@@ -10,8 +10,8 @@ def generate_file(file_name, size):
         size: int -> desired byte size of the file.
     """
     with open(file_name, "wb") as f:
-        for i in range(0, size // 8):
-            f.write(bytes(randrange(0, 254)))
+        for i in range(0, size):
+            f.write("\x00"+os.urandom(4)+"\x00")
 
 
 if __name__ == "__main__":
@@ -21,11 +21,11 @@ if __name__ == "__main__":
         "data/test_1kb.in",
         "data/test_50kb.in",
         "data/test_500kb.in",
-        "data/test_10mb.in",
+        "data/test_1mb.in",
     ]
-    kb = pow(2, 10)
-    mb = pow(2, 20)
-    sizes = [0, 8, kb * 1, kb * 50, kb * 500, mb * 10]
+    kb = 1024
+    mb = 1024 * 1024
+    sizes = [0, 1, kb * 1, kb * 50, kb * 500, mb * 1]
 
     for file_name, size in zip(file_names, sizes):
         generate_file(file_name, size)

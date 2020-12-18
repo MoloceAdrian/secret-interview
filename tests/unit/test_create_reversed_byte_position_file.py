@@ -10,7 +10,7 @@ from binary_reverse import create_reversed_bytes_position_file
         ("data/test_1kb.in", "data/test_1kb.out", "data/expected_1kb"),
         ("data/test_50kb.in", "data/test_50kb.out", "data/expected_50kb"),
         ("data/test_500kb.in", "data/test_500kb.out", "data/expected_500kb"),
-        ("data/test_10mb.in", "data/test_10mb.out", "data/expected_10mb"),
+        ("data/test_1mb.in", "data/test_1mb.out", "data/expected_1mb"),
     ],
 )
 def test_can_create_new_file_with_reversed_bytes_position(
